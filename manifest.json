@@ -1,10 +1,14 @@
 {
   "name": "ZeroWiki",
-  "description": "This extension makes Chrome load Wikipedia content from 0wikipedia.org instead of wikipedia.org.",
-  "version": "0.0.1",
+  "short_name": "ZeroWiki",
+  "description": "This extension makes your browser load Wikipedia content from 0wikipedia.org instead of wikipedia.org.",
+  "version": "0.0.2",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"]
+  },
+  "browser_action": {
+    "default_icon": "zerowiki_icon_19x19.png"
   },
   "permissions":["*://*.wikipedia.org/*","webRequest","webRequestBlocking"]
 }
