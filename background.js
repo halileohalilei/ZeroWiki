@@ -10,10 +10,7 @@ chrome.webRequest.onBeforeRequest.addListener(
       stub = stubParts.join(".");
       actualUrlParts.splice(2, 1, stub);
       var newUrl = actualUrlParts.join("/");
-      return { redirectUrl: newUrl};
-    }
-    else {
-      return { redirectUrl: "https://www.stackoverflow.com" }
+      return { redirectUrl: newUrl };
     }
   },
   {urls: ["*://*.wikipedia.org/*"]},
