@@ -12,7 +12,14 @@ chrome.webRequest.onBeforeRequest.addListener(
       var newUrl = actualUrlParts.join("/");
       return { redirectUrl: newUrl };
     }
+    else if (stubParts[domainIndex] == "imgur"){
+      stubParts.splice(domainIndex, 1, "0imgur");
+      stub = stubParts.join(".");
+      actualUrlParts.splice(2, 1, stub);
+      var newUrl = actualUrlParts.join("/");
+      return { redirectUrl: newUrl };
+    }
   },
-  {urls: ["*://*.wikipedia.org/*"]},
+  {urls: ["*://*.wikipedia.org/*", "*://*.imgur.com/*"]},
   ["blocking"]
 );
