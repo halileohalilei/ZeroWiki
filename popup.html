@@ -1,0 +1,43 @@
+<!doctype html>
+<!--
+ This page is shown when the extension button is clicked, because the
+ "browser_action" field in manifest.json contains the "default_popup" key with
+ value "popup.html".
+ -->
+<html>
+  <head>
+    <title>Getting Started Extension's Popup</title>
+    <style type="text/css">
+      body {
+        margin: 10px;
+        width: 280px;
+        white-space: nowrap;
+      }
+
+      h1 {
+        font-size: 15px;
+      }
+
+      #container {
+        align-items: center;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      #dropdown {
+        width: auto;
+      }
+    </style>
+
+    <!-- <script type="module" src="popup.js"></script> -->
+    <script src="popup.js"></script>
+  </head>
+
+  <body>
+    <h1>ZeroWiki</h1>
+    <div id="container">
+      <span>Choose a Wikipedia mirror:</span>
+      <select id="dropdown" />
+    </div>
+  </body>
+</html>
