@@ -15,7 +15,7 @@ You can currently download ZeroWiki from [Chrome Web Store](https://chrome.googl
 
 ## Manual Installation
 
-If ZeroWiki is not available for your browser, you can manually download this repository and add it as an extension to your browser if your browser supports extensions. It should work with most of the browsers since ZeroWiki is as simple an extension as it gets, however please let me know if it doesn't so I can try to make some arrangements.
+If ZeroWiki is not available for your browser, you can manually download this repository, run `./pack.sh`, and use the resulting ZeroWiki.zip file to add it as an extension to your browser if your browser supports extensions. It should work with most of the browsers since ZeroWiki is as simple an extension as it gets, however please let me know if it doesn't so I can try to make some arrangements.
 
 ## How It Works
 
