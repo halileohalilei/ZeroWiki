@@ -2,7 +2,9 @@
 
 const selectedMirrorKey = 'selectedMirror';
 
-const mirrorNames = ['0wikipedia.org', 'wikizero.com', 'wikiwand.com', 'wikipedi0.org'];
+const mirrorNames = chrome.extension.getBackgroundPage().getAllMirrorsNames()
+
+console.log(mirrorNames)
 
 function setSelectedMirror(mirrorName) {
   chrome.extension.getBackgroundPage().setSelectedMirror(mirrorName);
