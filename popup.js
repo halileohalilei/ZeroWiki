@@ -23,7 +23,7 @@ chrome.storage.local.get(selectedMirrorKey, (data) => {
   dropdown.childNodes.forEach((mirrorOption) => {
     if (mirrorOption.value === selectedMirrorName) {
       // eslint-disable-next-line no-param-reassign
-      mirrorOption.selected = true;
+      mirrorOption.checked='checked';
     }
   });
   setSelectedMirror(selectedMirrorName);
@@ -34,23 +34,39 @@ document.addEventListener('DOMContentLoaded', () => {
   if (dropdown) {
     // $FlowFixMe
     mirrorNames.forEach((mirrorName) => {
-      const mirrorOption = document.createElement('option');
+      // <input type="radio" name="gender" value="male" checked> Male<br>
+      const mirrorOption = document.createElement('input');
+      mirrorOption.type = 'radio';
+      mirrorOption.name = 'wiki';
       mirrorOption.value = mirrorName;
-      mirrorOption.innerHTML = mirrorName;
+
+      const mirrorLabel = document.createElement('label');
+      mirrorLabel.innerHTML = mirrorName;
+
       dropdown.appendChild(mirrorOption);
+      dropdown.appendChild(mirrorLabel);
+      dropdown.appendChild(document.createElement('br'));
+
     });
 
     dropdown.addEventListener('change', () => {
-      selectedMirrorName = dropdown.value;
-      setSelectedMirror(selectedMirrorName);
-      // $FlowFixMe
-      const data = {};
-      data[selectedMirrorKey] = dropdown.value;
-      chrome.storage.local.set(data, () => {
-        if (chrome.runtime.error) {
-          console.log(chrome.runtime.error);
+
+      document.getElementsByName('wiki').forEach((radio)=> {
+
+        if(radio.checked) {
+
+          selectedMirrorName = radio.value;
+          setSelectedMirror(selectedMirrorName);
+          // $FlowFixMe
+          const data = {};
+          data[selectedMirrorKey] = radio.value;
+          chrome.storage.local.set(data, () => {
+            if (chrome.runtime.error) {
+              console.log(chrome.runtime.error);
+            }
+          });
         }
-      });
+      })
     });
   }
 });
