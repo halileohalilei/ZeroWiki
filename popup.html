@@ -10,7 +10,6 @@
     <style type="text/css">
       body {
         margin: 10px;
-        width: 280px;
         white-space: nowrap;
       }
 
@@ -18,15 +17,22 @@
         font-size: 15px;
       }
 
-      #container {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
+      span {
+        margin-bottom: 5px;
+      }
+
+      input {
+        margin-right: 10px;
       }
 
       #dropdown {
-        width: auto;
+        margin: 10px;
+        margin-left: 0px;
+        margin-right: 0px;
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
       }
+
     </style>
 
     <!-- <script type="module" src="popup.js"></script> -->
@@ -37,7 +43,7 @@
     <h1>ZeroWiki</h1>
     <div id="container">
       <span>Choose a Wikipedia mirror:</span>
-      <select id="dropdown" />
+      <div id="dropdown"></div>
     </div>
   </body>
 </html>
