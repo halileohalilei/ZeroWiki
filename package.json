@@ -1,7 +1,8 @@
 {
   "scripts": {
     "package": "./pack.sh",
-    "build-icon": "svgexport ./icon-data.json"
+    "build-icon": "svgexport ./icon-data.json",
+    "postinstall": "yarn build-icon"
   },
   "dependencies": {
     "flow": "^0.2.3"
