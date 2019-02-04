@@ -1,36 +1,26 @@
 /* global document chrome */
 
 const selectedMirrorKey = 'selectedMirror';
-
+const onOffKey = 'active';
 const mirrorNames = chrome.extension.getBackgroundPage().getAllMirrorsNames()
+let selectedMirrorName;
 
 function setSelectedMirror(mirrorName) {
   chrome.extension.getBackgroundPage().setSelectedMirror(mirrorName);
 }
 
-let selectedMirrorName;
-
-chrome.storage.local.get(selectedMirrorKey, (data) => {
-  selectedMirrorName = data[selectedMirrorKey];
-  if (!selectedMirrorName) {
-    [selectedMirrorName] = mirrorNames;
-    const mirrorData = {};
-    mirrorData[selectedMirrorKey] = selectedMirrorName;
-    chrome.storage.local.set(mirrorData);
-  }
-
-  const dropdown = document.getElementById('dropdown');
-  dropdown.childNodes.forEach((mirrorOption) => {
-    if (mirrorOption.value === selectedMirrorName) {
-      // eslint-disable-next-line no-param-reassign
-      mirrorOption.checked='checked';
-    }
-  });
-  setSelectedMirror(selectedMirrorName);
-});
-
 document.addEventListener('DOMContentLoaded', () => {
+
+  chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
+    selectedMirrorName = data[selectedMirrorKey];
+
+    document.getElementById('onoffbutton').checked=data[onOffKey]
+
+
+
   const dropdown = document.getElementById('dropdown');
+  const onoffbutton = document.getElementById('onoffbutton');
+
   if (dropdown) {
     // $FlowFixMe
     mirrorNames.forEach((mirrorName) => {
@@ -40,6 +30,11 @@ document.addEventListener('DOMContentLoaded', () => {
       mirrorOption.name = 'wiki';
       mirrorOption.value = mirrorName;
 
+      console.log(onoffbutton.checked);
+
+
+      mirrorOption.disabled = !onoffbutton.checked
+
       const mirrorLabel = document.createElement('label');
       mirrorLabel.innerHTML = mirrorName;
 
@@ -48,6 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
       dropdown.appendChild(document.createElement('br'));
 
     });
+
+    onoffbutton.addEventListener('change', () => {
+
+      // Notify background of the update
+      chrome.storage.local.set({"active": onoffbutton.checked}, ()=> {
+
+        chrome.runtime.sendMessage({data:"refresh"})
+      })
+
+      dropdown.querySelectorAll("input").forEach((input)=>{
+        input.disabled = !onoffbutton.checked
+      })
+    })
 
     dropdown.addEventListener('change', () => {
 
@@ -68,5 +76,26 @@ document.addEventListener('DOMContentLoaded', () => {
         }
       })
     });
+
+    dropdown.querySelectorAll("input").forEach((input)=>{
+      input.disabled = !onoffbutton.checked
+    })
   }
+
+  if (!selectedMirrorName) {
+    [selectedMirrorName] = mirrorNames;
+    const mirrorData = {};
+    mirrorData[selectedMirrorKey] = selectedMirrorName;
+    chrome.storage.local.set(mirrorData);
+  }
+
+  dropdown.childNodes.forEach((mirrorOption) => {
+    if (mirrorOption.value === selectedMirrorName) {
+      // eslint-disable-next-line no-param-reassign
+      mirrorOption.checked='checked';
+    }
+  });
+  setSelectedMirror(selectedMirrorName);
+});
+
 });
