@@ -7,28 +7,9 @@
 <html>
   <head>
     <title>Getting Started Extension's Popup</title>
-    <style type="text/css">
-      body {
-        margin: 10px;
-        width: 280px;
-        white-space: nowrap;
-      }
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
 
-      h1 {
-        font-size: 15px;
-      }
-
-      #container {
-        align-items: center;
-        display: flex;
-        justify-content: space-between;
-      }
-
-      #dropdown {
-        width: auto;
-      }
-    </style>
-
+    <link rel="stylesheet" href="popup.css">
     <!-- <script type="module" src="popup.js"></script> -->
     <script src="popup.js"></script>
   </head>
@@ -36,8 +17,16 @@
   <body>
     <h1>ZeroWiki</h1>
     <div id="container">
+      <center>
+      <span id="switch-container"><!-- Rounded switch -->
+        <label class="switch">
+          <input type="checkbox" checked id="onoffbutton">
+          <span class="slider round"></span>
+        </label>
+      </span>
+    </center>
       <span>Choose a Wikipedia mirror:</span>
-      <select id="dropdown" />
+      <div id="dropdown"></div>
     </div>
   </body>
 </html>

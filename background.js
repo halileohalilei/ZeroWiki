@@ -1,7 +1,10 @@
 /* global chrome */
 
 const selectedMirrorKey = 'selectedMirror';
+const onOffKey = 'active';
 
+// Stay active as a default
+let active = true;
 let selectedMirror;
 
 function WikiMirror(name, mirrorType) {
@@ -46,19 +49,39 @@ function setSelectedMirror(selectedMirrorName) {
   [selectedMirror] = allMirrors.filter(mirror => mirror.name === selectedMirrorName);
 }
 
-chrome.storage.local.get(selectedMirrorKey, (data) => {
+function getAllMirrorsNames(){
+  return allMirrors.map((mirror) => mirror.name)
+}
+
+chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
   let selectedMirrorName = data[selectedMirrorKey];
+  active = data[onOffKey]
+
   if (!selectedMirrorName) {
     selectedMirrorName = allMirrors[0].name;
     const mirrorData = {};
     mirrorData[selectedMirrorKey] = selectedMirrorName;
+    mirrorData[onOffKey] = true
+    active = true
     chrome.storage.local.set(mirrorData);
   }
   setSelectedMirror(selectedMirrorName);
 });
 
+chrome.runtime.onMessage.addListener(function(message,sender,sendResponse){
+	if(message.data == "refresh") {
+    chrome.storage.local.get([onOffKey], (data) => {
+      active = data[onOffKey]
+    })
+  }
+});
+
 chrome.webRequest.onBeforeRequest.addListener(
   (details) => {
+
+    if (!active)
+      return {}
+
     const actualUrl = details.url;
     const actualUrlParts = actualUrl.split('/');
     const stub = actualUrlParts[2];

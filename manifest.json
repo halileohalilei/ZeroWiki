@@ -2,19 +2,33 @@
   "name": "ZeroWiki",
   "short_name": "ZeroWiki",
   "description": "This extension makes your browser load Wikipedia content from one of the available Wikipedia mirrors, instead of wikipedia.org.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"]
   },
   "browser_action": {
-    "default_icon": "icons/zerowiki_icon_19.png",
+    "default_icon": {
+      "16": "icons/zerowiki_icon_16.png",
+      "19": "icons/zerowiki_icon_19.png",
+      "24": "icons/zerowiki_icon_24.png",
+      "32": "icons/zerowiki_icon_32.png",
+      "38": "icons/zerowiki_icon_38.png"
+    },
     "default_popup": "popup.html"
   },
   "icons": {
     "16": "icons/zerowiki_icon_16.png",
-    "48": "icons/zerowiki_icon_48.png",
-    "128": "icons/zerowiki_icon_128.png"
+    "24": "icons/zerowiki_icon_24.png",
+    "32": "icons/zerowiki_icon_32.png",
+    "64": "icons/zerowiki_icon_64.png",
+    "128": "icons/zerowiki_icon_128.png",
+    "256": "icons/zerowiki_icon_256.png"
   },
-  "permissions":["*://*.wikipedia.org/*", "webRequest", "webRequestBlocking", "storage"]
+  "permissions": [
+    "*://*.wikipedia.org/*",
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
+  ]
 }

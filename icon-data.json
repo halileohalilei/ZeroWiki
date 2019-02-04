@@ -1,0 +1,14 @@
+ [{
+     "input": ["./assets/icon.svg"],
+     "output": [
+         ["./icons/zerowiki_icon_16.png", "png", "100%", "16:16"],
+         ["./icons/zerowiki_icon_19.png", "png", "100%", "19:19"],
+         ["./icons/zerowiki_icon_24.png", "png", "100%", "24:24"],
+         ["./icons/zerowiki_icon_32.png", "png", "100%", "32:32"],
+         ["./icons/zerowiki_icon_38.png", "png", "100%", "38:38"],
+         ["./icons/zerowiki_icon_48.png", "png", "100%", "48:48"],
+         ["./icons/zerowiki_icon_64.png", "png", "100%", "64:64"],
+         ["./icons/zerowiki_icon_128.png", "png", "100%", "128:128"],
+         ["./icons/zerowiki_icon_256.png", "png", "100%", "256:256"]
+     ]
+ }]

@@ -1,17 +1,87 @@
 /* global document chrome */
 
 const selectedMirrorKey = 'selectedMirror';
-
-const mirrorNames = ['0wikipedia.org', 'wikizero.com', 'wikiwand.com', 'wikipedi0.org'];
+const onOffKey = 'active';
+const mirrorNames = chrome.extension.getBackgroundPage().getAllMirrorsNames()
+let selectedMirrorName;
 
 function setSelectedMirror(mirrorName) {
   chrome.extension.getBackgroundPage().setSelectedMirror(mirrorName);
 }
 
-let selectedMirrorName;
+document.addEventListener('DOMContentLoaded', () => {
 
-chrome.storage.local.get(selectedMirrorKey, (data) => {
-  selectedMirrorName = data[selectedMirrorKey];
+  chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
+    selectedMirrorName = data[selectedMirrorKey];
+
+    document.getElementById('onoffbutton').checked=data[onOffKey]
+
+
+
+  const dropdown = document.getElementById('dropdown');
+  const onoffbutton = document.getElementById('onoffbutton');
+
+  if (dropdown) {
+    // $FlowFixMe
+    mirrorNames.forEach((mirrorName) => {
+      // <input type="radio" name="gender" value="male" checked> Male<br>
+      const mirrorOption = document.createElement('input');
+      mirrorOption.type = 'radio';
+      mirrorOption.name = 'wiki';
+      mirrorOption.value = mirrorName;
+
+      console.log(onoffbutton.checked);
+
+
+      mirrorOption.disabled = !onoffbutton.checked
+
+      const mirrorLabel = document.createElement('label');
+      mirrorLabel.innerHTML = mirrorName;
+
+      dropdown.appendChild(mirrorOption);
+      dropdown.appendChild(mirrorLabel);
+      dropdown.appendChild(document.createElement('br'));
+
+    });
+
+    onoffbutton.addEventListener('change', () => {
+
+      // Notify background of the update
+      chrome.storage.local.set({"active": onoffbutton.checked}, ()=> {
+
+        chrome.runtime.sendMessage({data:"refresh"})
+      })
+
+      dropdown.querySelectorAll("input").forEach((input)=>{
+        input.disabled = !onoffbutton.checked
+      })
+    })
+
+    dropdown.addEventListener('change', () => {
+
+      document.getElementsByName('wiki').forEach((radio)=> {
+
+        if(radio.checked) {
+
+          selectedMirrorName = radio.value;
+          setSelectedMirror(selectedMirrorName);
+          // $FlowFixMe
+          const data = {};
+          data[selectedMirrorKey] = radio.value;
+          chrome.storage.local.set(data, () => {
+            if (chrome.runtime.error) {
+              console.log(chrome.runtime.error);
+            }
+          });
+        }
+      })
+    });
+
+    dropdown.querySelectorAll("input").forEach((input)=>{
+      input.disabled = !onoffbutton.checked
+    })
+  }
+
   if (!selectedMirrorName) {
     [selectedMirrorName] = mirrorNames;
     const mirrorData = {};
@@ -19,38 +89,13 @@ chrome.storage.local.get(selectedMirrorKey, (data) => {
     chrome.storage.local.set(mirrorData);
   }
 
-  const dropdown = document.getElementById('dropdown');
   dropdown.childNodes.forEach((mirrorOption) => {
     if (mirrorOption.value === selectedMirrorName) {
       // eslint-disable-next-line no-param-reassign
-      mirrorOption.selected = true;
+      mirrorOption.checked='checked';
     }
   });
   setSelectedMirror(selectedMirrorName);
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-  const dropdown = document.getElementById('dropdown');
-  if (dropdown) {
-    // $FlowFixMe
-    mirrorNames.forEach((mirrorName) => {
-      const mirrorOption = document.createElement('option');
-      mirrorOption.value = mirrorName;
-      mirrorOption.innerHTML = mirrorName;
-      dropdown.appendChild(mirrorOption);
-    });
-
-    dropdown.addEventListener('change', () => {
-      selectedMirrorName = dropdown.value;
-      setSelectedMirror(selectedMirrorName);
-      // $FlowFixMe
-      const data = {};
-      data[selectedMirrorKey] = dropdown.value;
-      chrome.storage.local.set(data, () => {
-        if (chrome.runtime.error) {
-          console.log(chrome.runtime.error);
-        }
-      });
-    });
-  }
 });
