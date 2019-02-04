@@ -46,6 +46,10 @@ function setSelectedMirror(selectedMirrorName) {
   [selectedMirror] = allMirrors.filter(mirror => mirror.name === selectedMirrorName);
 }
 
+function getAllMirrorsNames(){
+  return allMirrors.map((mirror) => mirror.name)
+}
+
 chrome.storage.local.get(selectedMirrorKey, (data) => {
   let selectedMirrorName = data[selectedMirrorKey];
   if (!selectedMirrorName) {
