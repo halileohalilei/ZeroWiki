@@ -25,5 +25,10 @@
     "128": "icons/zerowiki_icon_128.png",
     "256": "icons/zerowiki_icon_256.png"
   },
-  "permissions":["*://*.wikipedia.org/*", "webRequest", "webRequestBlocking", "storage"]
+  "permissions": [
+    "*://*.wikipedia.org/*",
+    "webRequest",
+    "webRequestBlocking",
+    "storage"
+  ]
 }
