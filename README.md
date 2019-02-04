@@ -22,3 +22,9 @@ If ZeroWiki is not available for your browser, you can manually download this re
 ## How It Works
 
 ZeroWiki doesn't do anything fancy. It just redirects your requests to wikipedia.org to one of the Wikipedia mirrors of your choice. Please note that most of the mirrors available in ZeroWiki are owned by people and not companies (except for Wikiwand). If you do not trust any of these mirrors, then I suggest you not use this extension. Also, I suggest you not enter any private information (username, password etc.) on any of the pages fetched from any of these mirrors as they most probably do not have any privacy policies (again, except for Wikiwand).
+
+## Contribution
+
+Contributions are welcome. Just keep in mind the following before sending a pull request:
+- All pull requests must be against `development`, not `master`. `development` is merged to `master` only when there are enough changes for a new version.
+- All commits must follow the [AngularJS Git Commit Message Convention](https://gist.github.com/stephenparish/9941e89d80e2bc58a153)
