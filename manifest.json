@@ -2,7 +2,7 @@
   "name": "ZeroWiki",
   "short_name": "ZeroWiki",
   "description": "This extension makes your browser load Wikipedia content from one of the available Wikipedia mirrors, instead of wikipedia.org.",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "manifest_version": 2,
   "background": {
     "scripts": ["background.js"]
