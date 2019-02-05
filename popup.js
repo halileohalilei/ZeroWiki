@@ -9,17 +9,26 @@ function setSelectedMirror(mirrorName) {
   chrome.extension.getBackgroundPage().setSelectedMirror(mirrorName);
 }
 
+function setOnOffTitle(value) {
+
+  let message = !value
+                ? "Click here to turn ON the extension"
+                : "Click here to turn OFF the extension";
+
+  document.getElementsByClassName('switch')[0].title=message
+}
+
 document.addEventListener('DOMContentLoaded', () => {
 
   chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
     selectedMirrorName = data[selectedMirrorKey];
 
-    document.getElementById('onoffbutton').checked=data[onOffKey]
+    const onoffbutton = document.getElementById('onoffbutton');
+    const dropdown = document.getElementById('dropdown');
 
+    onoffbutton.checked=data[onOffKey]
 
-
-  const dropdown = document.getElementById('dropdown');
-  const onoffbutton = document.getElementById('onoffbutton');
+    setOnOffTitle(onoffbutton.checked)
 
   if (dropdown) {
     // $FlowFixMe
@@ -29,10 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mirrorOption.type = 'radio';
       mirrorOption.name = 'wiki';
       mirrorOption.value = mirrorName;
-
-      console.log(onoffbutton.checked);
-
-
       mirrorOption.disabled = !onoffbutton.checked
 
       const mirrorLabel = document.createElement('label');
@@ -45,12 +50,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     onoffbutton.addEventListener('change', () => {
-
       // Notify background of the update
       chrome.storage.local.set({"active": onoffbutton.checked}, ()=> {
-
         chrome.runtime.sendMessage({data:"refresh"})
       })
+
+      setOnOffTitle(onoffbutton.checked)
 
       dropdown.querySelectorAll("input").forEach((input)=>{
         input.disabled = !onoffbutton.checked
@@ -58,9 +63,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     dropdown.addEventListener('change', () => {
-
       document.getElementsByName('wiki').forEach((radio)=> {
-
         if(radio.checked) {
 
           selectedMirrorName = radio.value;
