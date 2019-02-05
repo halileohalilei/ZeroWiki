@@ -12,16 +12,16 @@ function setSelectedMirror(mirrorName) {
 function setOnOffTitle(value) {
 
   let message = !value
-                ? browser.i18n.getMessage("clickOnButtonMessage")
-                : browser.i18n.getMessage("clickOffButtonMessage");
+                ? chrome.i18n.getMessage("clickOnButtonMessage")
+                : chrome.i18n.getMessage("clickOffButtonMessage");
 
   document.getElementsByClassName('switch')[0].title = message;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  document.getElementById('infoMirror').innerText = browser.i18n.getMessage("dropdownText");
-  document.getElementById('infoMirror').href = browser.i18n.getMessage("wikipediaMirrorUrl");
+  document.getElementById('infoMirror').innerText = chrome.i18n.getMessage("dropdownText");
+  document.getElementById('infoMirror').href = chrome.i18n.getMessage("wikipediaMirrorUrl");
 
   chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
     selectedMirrorName = data[selectedMirrorKey];
