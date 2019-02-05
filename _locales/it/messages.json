@@ -19,5 +19,9 @@
 
     "clickOffButtonMessage": {
       "message": "Fai click qui per disattivare l'estensione"
+    },
+
+    "wikipediaMirrorUrl": {
+      "message": "https://it.wikipedia.org/wiki/Wikipedia:Cloni"
     }
 }

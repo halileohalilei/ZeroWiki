@@ -20,7 +20,8 @@ function setOnOffTitle(value) {
 
 document.addEventListener('DOMContentLoaded', () => {
 
-  document.getElementById('dropdownText').innerText = browser.i18n.getMessage("dropdownText");
+  document.getElementById('infoMirror').innerText = browser.i18n.getMessage("dropdownText");
+  document.getElementById('infoMirror').href = browser.i18n.getMessage("wikipediaMirrorUrl");
 
   chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
     selectedMirrorName = data[selectedMirrorKey];
