@@ -12,13 +12,15 @@ function setSelectedMirror(mirrorName) {
 function setOnOffTitle(value) {
 
   let message = !value
-                ? "Click here to turn ON the extension"
-                : "Click here to turn OFF the extension";
+                ? browser.i18n.getMessage("clickOnButtonMessage")
+                : browser.i18n.getMessage("clickOffButtonMessage");
 
-  document.getElementsByClassName('switch')[0].title=message
+  document.getElementsByClassName('switch')[0].title = message;
 }
 
 document.addEventListener('DOMContentLoaded', () => {
+
+  document.getElementById('dropdownText').innerText = browser.i18n.getMessage("dropdownText");
 
   chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
     selectedMirrorName = data[selectedMirrorKey];
