@@ -13,35 +13,45 @@ h1 {
   font-size: 15px;
 }
 
-span {
-  margin-bottom: 4px;
+#infoMirror {
+  cursor: help;
+  color: #000;
+  text-decoration: none;
 }
 
-input {
-  margin-right: 10px;
+#title {
+  font-size: 20px;
+  padding: 0;
+  margin: 0;
+  vertical-align: text-bottom;
+  margin-right: 20px;
+  margin-top: 5px;
 }
 
 #dropdown {
   margin: 10px;
   margin-left: 0px;
   margin-right: 0px;
-  border-top: 1px solid #ddd;
-  padding-top: 10px;
 }
 
-#switch-container {
-  margin: 10px;
+#dropdown input {
   margin-right: 10px;
-  margin-left: 10px;
+}
+
+#switchContainer {
+  margin: 10px;
   margin-left: 0px;
   margin-right: 0px;
-  border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   height: auto;
-  width: 100%;
   display: block;
   padding: 10px;
-  padding-bottom: 5px;
+  padding-top: 0px;
+}
+
+#switchContainer > * {
+  display: inline-block;
+  vertical-align: middle;
 }
 
 /* The switch - the box around the slider */
@@ -65,7 +75,7 @@ input {
   cursor: pointer;
   top: 0;
   left: 0;
-  right: 4px;
+  right: 0px;
   bottom: 0;
   background-color: #ccc;
   -webkit-transition: .4s;
@@ -77,8 +87,8 @@ input {
   content: "";
   height: 26px;
   width: 26px;
-  left: 2px;
-  bottom: 2px;
+  left: 4px;
+  bottom: 4px;
   background-color: white;
   -webkit-transition: .4s;
   transition: .4s;

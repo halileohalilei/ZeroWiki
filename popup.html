@@ -15,17 +15,19 @@
   </head>
 
   <body>
-    <h1>ZeroWiki</h1>
     <div id="container">
       <center>
-      <span id="switch-container"><!-- Rounded switch -->
-        <label class="switch">
+      <span id="switchContainer"><!-- Rounded switch -->
+        <h1 id="title">ZeroWiki</h1>
+        <label class="switch" title="Click here to turn off the extension">
           <input type="checkbox" checked id="onoffbutton">
           <span class="slider round"></span>
         </label>
       </span>
     </center>
-      <span>Choose a Wikipedia mirror:</span>
+      <span id="dropdownText">
+        <a id="infoMirror" target="_blank" href="https://wikipedia.org/wiki/Wikipedia:Mirrors_and_forks">Choose a Wikipedia mirror:</a>
+      </span>
       <div id="dropdown"></div>
     </div>
   </body>

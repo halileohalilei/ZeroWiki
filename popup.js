@@ -9,17 +9,29 @@ function setSelectedMirror(mirrorName) {
   chrome.extension.getBackgroundPage().setSelectedMirror(mirrorName);
 }
 
+function setOnOffTitle(value) {
+
+  let message = !value
+                ? chrome.i18n.getMessage("clickOnButtonMessage")
+                : chrome.i18n.getMessage("clickOffButtonMessage");
+
+  document.getElementsByClassName('switch')[0].title = message;
+}
+
 document.addEventListener('DOMContentLoaded', () => {
+
+  document.getElementById('infoMirror').innerText = chrome.i18n.getMessage("dropdownText");
+  document.getElementById('infoMirror').href = chrome.i18n.getMessage("wikipediaMirrorUrl");
 
   chrome.storage.local.get([selectedMirrorKey, onOffKey], (data) => {
     selectedMirrorName = data[selectedMirrorKey];
 
-    document.getElementById('onoffbutton').checked=data[onOffKey]
+    const onoffbutton = document.getElementById('onoffbutton');
+    const dropdown = document.getElementById('dropdown');
 
+    onoffbutton.checked=data[onOffKey]
 
-
-  const dropdown = document.getElementById('dropdown');
-  const onoffbutton = document.getElementById('onoffbutton');
+    setOnOffTitle(onoffbutton.checked)
 
   if (dropdown) {
     // $FlowFixMe
@@ -29,10 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
       mirrorOption.type = 'radio';
       mirrorOption.name = 'wiki';
       mirrorOption.value = mirrorName;
-
-      console.log(onoffbutton.checked);
-
-
       mirrorOption.disabled = !onoffbutton.checked
 
       const mirrorLabel = document.createElement('label');
@@ -45,12 +53,12 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 
     onoffbutton.addEventListener('change', () => {
-
       // Notify background of the update
       chrome.storage.local.set({"active": onoffbutton.checked}, ()=> {
-
         chrome.runtime.sendMessage({data:"refresh"})
       })
+
+      setOnOffTitle(onoffbutton.checked)
 
       dropdown.querySelectorAll("input").forEach((input)=>{
         input.disabled = !onoffbutton.checked
@@ -58,9 +66,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
 
     dropdown.addEventListener('change', () => {
-
       document.getElementsByName('wiki').forEach((radio)=> {
-
         if(radio.checked) {
 
           selectedMirrorName = radio.value;

@@ -1,0 +1,27 @@
+{
+    "extensionName": {
+      "message": "ZeroWiki",
+      "description": "Name of the extension."
+    },
+
+    "extensionDescription": {
+      "message": "Questa estensione permette al tuo browser di caricare il contenuto di Wikipedia da fonti alternative a wikipedia.org",
+      "description": "Description of the extension."
+    },
+
+    "dropdownText": {
+      "message": "Scegli il mirror di Wikipedia:"
+    },
+
+    "clickOnButtonMessage": {
+      "message": "Fai click qui per attivare l'estensione"
+    },
+
+    "clickOffButtonMessage": {
+      "message": "Fai click qui per disattivare l'estensione"
+    },
+
+    "wikipediaMirrorUrl": {
+      "message": "https://it.wikipedia.org/wiki/Wikipedia:Cloni"
+    }
+}

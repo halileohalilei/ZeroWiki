@@ -1,0 +1,27 @@
+{
+  "extensionName": {
+    "message": "ZeroWiki",
+    "description": "Name of the extension."
+  },
+
+  "extensionDescription": {
+    "message": "This extension makes your browser load Wikipedia content from one of the available Wikipedia mirrors, instead of wikipedia.org.",
+    "description": "Description of the extension."
+  },
+
+  "dropdownText": {
+    "message": "Choose a Wikipedia mirror:"
+  },
+
+  "clickOnButtonMessage": {
+    "message": "Click here to turn ON the extension"
+  },
+
+  "clickOffButtonMessage": {
+    "message": "Click here to turn OFF the extension"
+  },
+
+  "wikipediaMirrorUrl": {
+    "message": "https://en.wikipedia.org/wiki/Wikipedia:Mirrors_and_forks"
+  }
+}
