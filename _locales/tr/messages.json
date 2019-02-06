@@ -1,0 +1,28 @@
+{
+    "extensionName": {
+      "message": "ZeroWiki",
+      "description": "Name of the extension."
+    },
+  
+    "extensionDescription": {
+      "message": "Bu eklentiyi kullanarak Wikipedia içeriklerini wikipedia.org yerine mevcut yansımaların birinden çekebilirsiniz.",
+      "description": "Description of the extension."
+    },
+  
+    "dropdownText": {
+      "message": "Bir Wikipedia yansıması seçin:"
+    },
+  
+    "clickOnButtonMessage": {
+      "message": "Eklentiyi açmak için buraya basın"
+    },
+  
+    "clickOffButtonMessage": {
+      "message": "Eklentiyi kapamak için buraya basın"
+    },
+  
+    "wikipediaMirrorUrl": {
+      "message": "https://en.wikipedia.org/wiki/Wikipedia:Mirrors_and_forks"
+    }
+  }
+  
