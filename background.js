@@ -39,10 +39,13 @@ WikiMirror.prototype.getModifiedUrl = function (actualUrlParts, domainIndex, stu
 };
 
 const allMirrors = [
-  new WikiMirror('0wikipedia.org', 0),
   new WikiMirror('wikizero.com', 1),
   new WikiMirror('wikiwand.com', 1),
   new WikiMirror('wikipedi0.org', 0),
+  new WikiMirror('00wikipedia.org', 0),
+  new WikiMirror('1wikipedia.org', 0),
+  new WikiMirror('2wikipedia.org', 0),
+  new WikiMirror('Zwikipedia.org', 0),
 ];
 
 function setSelectedMirror(selectedMirrorName) {
